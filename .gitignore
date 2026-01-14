@@ -9,6 +9,10 @@
 [Ll]ogs/
 [Mm]emoryCaptures/
 [Rr]ecordings/
+Il2cppBuildCache/
+
+# Unity Package cache (sometimes leaks large binaries)
+Library/PackageCache/
 
 # Asset meta data should only be ignored when the corresponding asset is ignored
 !/[Aa]ssets/**/*.meta
@@ -55,6 +59,7 @@ Desktop.ini
 # Unity crash reports
 # =========================
 sysinfo.txt
+crashlytics-build.properties
 
 # =========================
 # Addressables & Shader cache
@@ -62,6 +67,7 @@ sysinfo.txt
 /[Aa]ssets/[Aa]ddressableAssetsData/*/*.bin*
 /[Aa]ssets/[Aa]ddressableAssetsData/*/*.json
 /[Aa]ssets/[Aa]ddressableAssetsData/*/*.hash
+/[Aa]ssets/[Aa]ddressableAssetsData/*/*.bundle*
 
 # =========================
 # Gradle (Android)
