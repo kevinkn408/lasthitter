@@ -1,28 +1,28 @@
 ﻿<Properties StartupConfiguration="{E4F07409-462C-AA73-FABF-98023898810E}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Combat/Fighter.cs">
     <Files>
-      <File FileName="Assets/CharacterManager.cs" />
-      <File FileName="Assets/Scripts/Combat/Fighter.cs" Line="104" Column="35" />
-      <File FileName="Assets/Scripts/Control/AIController.cs" />
-      <File FileName="Assets/Scripts/Player.cs" />
+      <File FileName="Assets/CharacterManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Control/AIController.cs" Line="146" Column="29" />
+      <File FileName="Assets/Scripts/Player.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Attributes/Health.cs" Line="128" Column="37" />
       <File FileName="Assets/Scripts/Combat/WeaponConfig.cs" Line="94" Column="36" />
-      <File FileName="Assets/Scripts/Movement/Mover.cs" />
-      <File FileName="Assets/Scripts/Combat/CombatTarget.cs" />
-      <File FileName="Assets/Scripts/Combat/Weapon.cs" />
-      <File FileName="Assets/Scripts/Core/Spawner.cs" />
+      <File FileName="Assets/Scripts/Movement/Mover.cs" Line="48" Column="24" />
+      <File FileName="Assets/Scripts/Combat/CombatTarget.cs" Line="23" Column="15" />
+      <File FileName="Assets/Scripts/Combat/Weapon.cs" Line="17" Column="28" />
+      <File FileName="Assets/Scripts/Core/Spawner.cs" Line="63" Column="49" />
       <File FileName="Assets/SortTargets.cs" />
-      <File FileName="Assets/AutoAttacker.cs" />
-      <File FileName="Assets/Scripts/Control/PlayerController.cs" Line="40" Column="33" />
+      <File FileName="Assets/AutoAttacker.cs" Line="42" Column="1" />
       <File FileName="Assets/Scripts/Combat/Projectile.cs" />
       <File FileName="Assets/Spell_FireStrike.cs" />
       <File FileName="Assets/Asset Packs/Particle Attractor by Moonflower Carnivore/Scripts/particleAttractorLinear.cs" />
-      <File FileName="Assets/Scripts/Core/ActionScheduler.cs" Line="7" Column="18" />
+      <File FileName="Assets/Scripts/Combat/Fighter.cs" Line="154" Column="32" />
+      <File FileName="Assets/Scripts/Control/PlayerController.cs" Line="33" Column="45" NotebookId="1" />
+      <File FileName="Assets/Scripts/Core/ActionScheduler.cs" Line="11" Column="28" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="219ac48b-8480-46c4-be4f-ff598a6c6aac" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="efe31cf0-0ccd-4886-99ab-c501442bc265" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/polo/Desktop/Last Hit Trainer/Assets/Scripts/Control/AIController.cs" relfile="Assets/Scripts/Control/AIController.cs" line="14" column="1" />

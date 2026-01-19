@@ -17,7 +17,7 @@ namespace RPG.Combat
         public void OnHit()
         {
             onHit?.Invoke();
-            UnityEngine.Debug.Log("fuck");
+            //UnityEngine.Debug.Log("fuck");
             if (impactEffect != null)
             {
                 //GetComponent<Fighter> might be a hard dependency, look for a new way to do this down the light

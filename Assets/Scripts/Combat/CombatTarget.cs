@@ -20,7 +20,7 @@ namespace RPG.Combat
 
         public void Update()
         {
-            print(playerAggro);
+            //print(playerAggro);
         }
 
         public bool PlayerAggro()

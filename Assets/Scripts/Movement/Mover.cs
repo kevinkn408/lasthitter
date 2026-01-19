@@ -14,6 +14,13 @@ namespace RPG.Movement
         NavMeshAgent navAgent;
         Health health;
 
+        Vector3 prevPos;
+
+
+        public bool cameraRelative = true;
+        Camera cam;
+        Vector3 lastMoveDir = Vector3.forward;
+
         private void Awake()
         {
             navAgent = GetComponent<NavMeshAgent>();
@@ -24,6 +31,72 @@ namespace RPG.Movement
         {
             navAgent.enabled = !health.IsDead();
             UpdateAnimation();
+
+        }
+
+        void LateUpdate()
+        {
+        }
+
+        public void HandleRawInput()
+        {
+            Vector2 input = new Vector2(
+                Input.GetAxisRaw("Horizontal"),
+                Input.GetAxisRaw("Vertical")
+            );
+
+            if (input.sqrMagnitude < 0.001f)
+                return;
+
+            GetComponent<Fighter>().Cancel();
+            GetComponent<ActionScheduler>().StartAction(this);
+
+            if (navAgent.hasPath) navAgent.ResetPath();
+            navAgent.updateRotation = false;
+            navAgent.autoBraking = false;
+
+            Vector3 moveDir = GetWorldMoveDir(input);
+            lastMoveDir = moveDir;
+
+            navAgent.Move(moveDir * maxSpeed * Time.deltaTime);
+
+            // Rotate like the agent would: toward current travel direction at angularSpeed
+            RotateToward(moveDir);
+
+
+
+            //Vector3 dir = new Vector3(input.x, 0f, input.y).normalized;
+            //navAgent.Move(dir * maxSpeed * Time.deltaTime);
+
+            return;
+        }
+
+
+        Vector3 GetWorldMoveDir(Vector2 input)
+        {
+            Vector3 dir = new Vector3(input.x, 0f, input.y).normalized;
+
+            if (!cameraRelative || cam == null) return dir;
+
+            Vector3 forward = cam.transform.forward; forward.y = 0f; forward.Normalize();
+            Vector3 right = cam.transform.right; right.y = 0f; right.Normalize();
+
+            return (right * input.x + forward * input.y).normalized;
+        }
+
+
+        void RotateToward(Vector3 moveDir)
+        {
+            if (moveDir.sqrMagnitude < 0.0001f) return;
+
+            Quaternion target = Quaternion.LookRotation(moveDir, Vector3.up);
+
+            // NavMeshAgent.angularSpeed is in degrees/second
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                target,
+                navAgent.angularSpeed * Time.deltaTime
+            );
         }
 
         public bool CanMoveTo(Vector3 destination)
@@ -72,10 +145,18 @@ namespace RPG.Movement
 
         private void UpdateAnimation()
         {
-            Vector3 velocity = navAgent.velocity;
-            Vector3 localVelocity = transform.InverseTransformDirection(velocity);
-            float speed = localVelocity.z; //forward speed (z axis)
-            GetComponent<Animator>().SetFloat("forwardSpeed", speed);
+            //Vector3 velocity = navAgent.velocity;
+            //Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+            //float speed = localVelocity.z; //forward speed (z axis)
+            //print(velocity);
+            //GetComponent<Animator>().SetFloat("forwardSpeed", speed);
+
+
+            Vector3 delta = transform.position - prevPos;
+            prevPos = transform.position;
+
+            float rawSpeed = (delta / Time.deltaTime).magnitude;   // world units/sec
+            GetComponent<Animator>().SetFloat("forwardSpeed", rawSpeed);
         }
 
         public object CaptureState()

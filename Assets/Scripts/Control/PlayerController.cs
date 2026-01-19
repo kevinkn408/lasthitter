@@ -15,6 +15,7 @@ namespace RPG.Control
         [SerializeField] float navMeshProjectionDistance = 1f;
         [SerializeField] float spherecastRadius = 0.2f;
         //[SerializeField] float maxNavPathLength = 40f;
+        [SerializeField] bool mouseMode = true;
 
         [System.Serializable]
         struct CursorMapping
@@ -36,7 +37,10 @@ namespace RPG.Control
         void Update()
         {
             //if (InteractWithUI()) return; 
-            if (health.IsDead()) return; 
+            if (health.IsDead()) return;
+            mover.HandleRawInput();
+
+            if (!mouseMode) return;
             if (InteractWithComponent()) return;  
             if (InteractWithMovement()) return;
             //print("nothing to do");
@@ -92,6 +96,9 @@ namespace RPG.Control
 
         private RaycastHit[] SortRaycastHits()
         {
+
+
+
             RaycastHit[] hits = Physics.SphereCastAll(GetMouseRay(), spherecastRadius);
             float[] distance = new float[hits.Length];
             for (int i = 0; i < hits.Length; i++)
@@ -113,6 +120,7 @@ namespace RPG.Control
                 //NavmeshAgent.SetDestination runs continuously on single call
                 if (Input.GetMouseButton(0))
                 {
+                    print("found surface");
                     mover.StartMoveAction(target, 1f);
                 }
                 SetCursor(CursorType.Move);

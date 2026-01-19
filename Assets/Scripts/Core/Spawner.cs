@@ -49,7 +49,7 @@ namespace RPG.Core
         {
             while (true)
             {
-                print("I am spawning");
+                //print("I am spawning");
                 Spawn(emptyA,emptyB);
                 yield return delay;
             }

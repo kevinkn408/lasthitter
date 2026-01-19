@@ -21,14 +21,17 @@ public class AutoAttacker : MonoBehaviour
     void Update()
     {
         currentTarget = GetComponent<SortTargets>().ClosestTarget();
-        AIAttackBehavior();
+        fighter.GetTarget = currentTarget.GetComponent<Health>();
+
+//        AIAttackBehavior();
     }
 
     private void AIAttackBehavior()
     {
         if (combatTarget.PlayerAggro() == true)
         {
-            fighter.Attack(currentTarget);
+            fighter.GetTarget = currentTarget.GetComponent<Health>();
+            //fighter.Attack(currentTarget);
         }
         else
         {

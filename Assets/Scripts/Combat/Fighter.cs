@@ -90,7 +90,7 @@ namespace RPG.Combat
             currentAnimatorClipInfo = this.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0);
             currentClipLength = currentAnimatorClipInfo[0].clip.length;
 
-            print(currentAnimatorClipInfo[0].clip.name);
+            //print(currentAnimatorClipInfo[0].clip.name);
             //CalculateAttackSpeed();
             CalculateTime();
             if (currentTarget == null || currentTarget.IsDead())
@@ -159,7 +159,7 @@ namespace RPG.Combat
         private void AttackBehavior(float attackLength)
         {
             transform.LookAt(currentTarget.transform);
-            UnityEngine.Debug.Log("Current Target is " + currentTarget);
+            //UnityEngine.Debug.Log("Current Target is " + currentTarget);
 
             if (!this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
@@ -186,7 +186,7 @@ namespace RPG.Combat
                 timeSinceLastAttack = 0f;
                 GetComponent<Animator>().ResetTrigger("stopAttack");
                 GetComponent<Animator>().SetTrigger("attack");
-                print("attacking");
+                //print("attacking");
 
             }
 
