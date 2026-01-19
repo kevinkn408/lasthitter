@@ -21,6 +21,10 @@ namespace RPG.Movement
         Camera cam;
         Vector3 lastMoveDir = Vector3.forward;
 
+
+        public DriftingJoystickMouse joystick;
+
+
         private void Awake()
         {
             navAgent = GetComponent<NavMeshAgent>();
@@ -38,12 +42,18 @@ namespace RPG.Movement
         {
         }
 
+
+
+
         public void HandleRawInput()
         {
-            Vector2 input = new Vector2(
-                Input.GetAxisRaw("Horizontal"),
-                Input.GetAxisRaw("Vertical")
-            );
+            if (joystick == null) return;
+            Vector2 input = joystick.Value;
+
+            //Vector2 input = new Vector2(
+            //    Input.GetAxisRaw("Horizontal"),
+            //    Input.GetAxisRaw("Vertical")
+            //);
 
             if (input.sqrMagnitude < 0.001f)
                 return;
@@ -156,7 +166,7 @@ namespace RPG.Movement
             prevPos = transform.position;
 
             float rawSpeed = (delta / Time.deltaTime).magnitude;   // world units/sec
-            GetComponent<Animator>().SetFloat("forwardSpeed", rawSpeed);
+            GetComponent<Animator>().SetFloat("forwardSpeed", rawSpeed, 0.15f, Time.deltaTime);
         }
 
         public object CaptureState()

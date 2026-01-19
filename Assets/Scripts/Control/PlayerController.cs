@@ -17,6 +17,8 @@ namespace RPG.Control
         //[SerializeField] float maxNavPathLength = 40f;
         [SerializeField] bool mouseMode = true;
 
+
+
         [System.Serializable]
         struct CursorMapping
         {
@@ -38,6 +40,8 @@ namespace RPG.Control
         {
             //if (InteractWithUI()) return; 
             if (health.IsDead()) return;
+
+            HandleMobileInput();
             mover.HandleRawInput();
 
             if (!mouseMode) return;
@@ -45,6 +49,11 @@ namespace RPG.Control
             if (InteractWithMovement()) return;
             //print("nothing to do");
             SetCursor(CursorType.None);
+        }
+
+        private void HandleMobileInput()
+        {
+            return;
         }
 
         private void SetCursor(CursorType type)

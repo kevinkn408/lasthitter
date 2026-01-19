@@ -8,7 +8,7 @@ public class AutoAttacker : MonoBehaviour
 {
     Fighter fighter;
     CombatTarget combatTarget;
-    GameObject currentTarget;
+    GameObject currentTarget = null;
 
     // Start is called before the first frame update
     void Awake()
@@ -21,6 +21,7 @@ public class AutoAttacker : MonoBehaviour
     void Update()
     {
         currentTarget = GetComponent<SortTargets>().ClosestTarget();
+
         fighter.GetTarget = currentTarget.GetComponent<Health>();
 
 //        AIAttackBehavior();

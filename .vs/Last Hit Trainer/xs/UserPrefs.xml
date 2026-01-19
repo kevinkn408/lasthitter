@@ -1,23 +1,25 @@
 ﻿<Properties StartupConfiguration="{E4F07409-462C-AA73-FABF-98023898810E}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Combat/Fighter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/AppBootStrap.cs">
     <Files>
       <File FileName="Assets/CharacterManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Control/AIController.cs" Line="146" Column="29" />
+      <File FileName="Assets/Scripts/Control/AIController.cs" Line="199" Column="10" />
       <File FileName="Assets/Scripts/Player.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Attributes/Health.cs" Line="128" Column="37" />
       <File FileName="Assets/Scripts/Combat/WeaponConfig.cs" Line="94" Column="36" />
-      <File FileName="Assets/Scripts/Movement/Mover.cs" Line="48" Column="24" />
+      <File FileName="Assets/Scripts/Movement/Mover.cs" Line="164" Column="1" />
       <File FileName="Assets/Scripts/Combat/CombatTarget.cs" Line="23" Column="15" />
       <File FileName="Assets/Scripts/Combat/Weapon.cs" Line="17" Column="28" />
       <File FileName="Assets/Scripts/Core/Spawner.cs" Line="63" Column="49" />
       <File FileName="Assets/SortTargets.cs" />
-      <File FileName="Assets/AutoAttacker.cs" Line="42" Column="1" />
+      <File FileName="Assets/AutoAttacker.cs" Line="20" Column="39" />
       <File FileName="Assets/Scripts/Combat/Projectile.cs" />
       <File FileName="Assets/Spell_FireStrike.cs" />
       <File FileName="Assets/Asset Packs/Particle Attractor by Moonflower Carnivore/Scripts/particleAttractorLinear.cs" />
-      <File FileName="Assets/Scripts/Combat/Fighter.cs" Line="154" Column="32" />
-      <File FileName="Assets/Scripts/Control/PlayerController.cs" Line="33" Column="45" NotebookId="1" />
-      <File FileName="Assets/Scripts/Core/ActionScheduler.cs" Line="11" Column="28" NotebookId="1" />
+      <File FileName="Assets/Scripts/Combat/Fighter.cs" Line="109" Column="1" />
+      <File FileName="Assets/AppBootStrap.cs" Line="6" Column="1" />
+      <File FileName="Assets/Scripts/Control/PlayerController.cs" Line="20" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Core/ActionScheduler.cs" Line="28" Column="2" NotebookId="1" />
+      <File FileName="Assets/DriftingJoystickMouse.cs" Line="58" Column="10" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
