@@ -159,7 +159,7 @@ namespace RPG.Combat
         private void AttackBehavior(float attackLength)
         {
             transform.LookAt(currentTarget.transform);
-            //UnityEngine.Debug.Log("Current Target is " + currentTarget);
+            UnityEngine.Debug.Log("Current Target is " + currentTarget);
 
             if (!this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {

@@ -30,8 +30,24 @@ public class DriftingJoystickMouse : MonoBehaviour
     Vector2 _rawValue;
     Vector2 _value;
 
+
+    [Header("Tap vs Drag")]
+    public float tapMaxDuration = 0.18f;   // seconds
+    public float tapMaxMovePixels = 12f;   // "slop" radius
+
+    public bool TapThisFrame { get; private set; } // true for 1 frame after release
+    public bool DragThisFrame { get; private set; } // true for 1 frame when drag is recognized
+    public bool IsDraggingGesture => _dragStarted;  // latched once movement exceeds slop
+
+    private float _pressStartTime;
+    private Vector2 _pressStartPos;
+    private bool _dragStarted;
+
     void Update()
     {
+        TapThisFrame = false;
+        DragThisFrame = false;
+
         _rawValue = Read();
         _value = ApplySmoothing(_rawValue);
     }
@@ -54,6 +70,10 @@ public class DriftingJoystickMouse : MonoBehaviour
             _isDragging = true;
             _anchorPos = _currentPos = Input.mousePosition;
             _rawClampedDelta = Vector2.zero;
+
+            _pressStartTime = Time.time;
+            _pressStartPos = _currentPos;
+            _dragStarted = false;
             return Vector2.zero;
         }
 
@@ -64,6 +84,11 @@ public class DriftingJoystickMouse : MonoBehaviour
 
             _isDragging = false;
             _rawClampedDelta = Vector2.zero;
+
+            float duration = Time.time - _pressStartTime;
+            float totalMove = (Input.mousePosition.magnitude - _pressStartPos.magnitude);
+            bool isTap = !_dragStarted && duration <= tapMaxDuration && totalMove <= tapMaxMovePixels;
+            TapThisFrame = isTap;
             return Vector2.zero;
         }
 

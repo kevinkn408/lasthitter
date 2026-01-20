@@ -549,7 +549,7 @@ PrefabInstance:
     - target: {fileID: 1858737459898171570, guid: b8cfc588690b6440c8ffe14027d4c11a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2024819969216636946, guid: b8cfc588690b6440c8ffe14027d4c11a,
         type: 3}
@@ -808,8 +808,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlly: 0
-  chaseDistance: 5
-  suspicionTime: 0
+  chaseDistance: 10
+  suspicionTime: 3
   aggroCooldownTime: 5
   shoutDistance: 1
   patrolPath: {fileID: 0}

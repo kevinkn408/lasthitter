@@ -55,6 +55,12 @@ namespace RPG.Movement
             //    Input.GetAxisRaw("Vertical")
             //);
 
+            if (joystick.TapThisFrame)
+            {
+                print("This is a TAP");
+                return;
+            }
+
             if (input.sqrMagnitude < 0.001f)
                 return;
 
