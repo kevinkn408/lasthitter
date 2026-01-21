@@ -39,6 +39,9 @@ namespace RPG.Combat
 
         //so player can attack immediately
 
+
+        //special skills
+
         void Awake()
         {
             //For playable characters
@@ -93,6 +96,11 @@ namespace RPG.Combat
             //print(currentAnimatorClipInfo[0].clip.name);
             //CalculateAttackSpeed();
             CalculateTime();
+            HandleAttacking();
+        }
+
+        public void HandleAttacking()
+        {
             if (currentTarget == null || currentTarget.IsDead())
             {
                 currentTarget = null;
@@ -102,6 +110,7 @@ namespace RPG.Combat
             if (!GetIsInRange(currentTarget.transform))
             {
                 GetComponent<Mover>().MoveTo(currentTarget.transform.position, 1f);
+                print("not in range");
             }
             else
             {
@@ -186,7 +195,7 @@ namespace RPG.Combat
                 timeSinceLastAttack = 0f;
                 GetComponent<Animator>().ResetTrigger("stopAttack");
                 GetComponent<Animator>().SetTrigger("attack");
-                //print("attacking");
+                print("attacking");
 
             }
 
@@ -239,7 +248,7 @@ namespace RPG.Combat
             Hit();
         }
 
-        private bool GetIsInRange(Transform target)
+        public bool GetIsInRange(Transform target)
         {
             return Vector3.Distance(transform.position, target.transform.position) < currentWeaponConfig.WeaponRange();
         }

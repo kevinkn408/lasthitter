@@ -74,6 +74,7 @@
     <Compile Include="Assets/Scripts/Pooler.cs" />
     <Compile Include="Assets/Scripts/Saving/SaveableEntity.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/Components/DitheringComponent.cs" />
+    <Compile Include="Assets/UpdatePosition.cs" />
     <Compile Include="Assets/The Amazing Impact VFX/Sample Scene/ButtonAnimation.cs" />
     <Compile Include="Assets/Asset Packs/GameDev.tv Assets/Scripts/Utils/LazyValue.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/Components/GrainComponent.cs" />
