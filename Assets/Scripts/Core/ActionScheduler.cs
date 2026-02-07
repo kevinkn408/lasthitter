@@ -6,8 +6,12 @@ namespace RPG.Core
 {
     public class ActionScheduler : MonoBehaviour
     {
+        [SerializeField] MonoBehaviour currentActionDebug; // inspector-visible
+
         [SerializeField] IAction currentAction;
         // Start is called before the first frame update
+
+
         public void StartAction(IAction action)
         {
             if (currentAction == action) return;
@@ -18,11 +22,20 @@ namespace RPG.Core
                 currentAction.Cancel();
             }
             currentAction = action;
+            currentActionDebug = action as MonoBehaviour; // mirror for inspector
+
         }
 
         public void CancelCurrentAction()
         {
             StartAction(null);
         }
+
+        public IAction GetState
+        {
+            get{ return currentAction; }
+        }
+
+
     }
 }

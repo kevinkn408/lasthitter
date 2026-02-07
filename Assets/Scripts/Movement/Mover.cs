@@ -4,6 +4,7 @@ using RPG.Core;
 using RPG.Saving;
 using RPG.Attributes;
 using RPG.Combat;
+using System.Collections;
 
 namespace RPG.Movement
 {
@@ -11,24 +12,32 @@ namespace RPG.Movement
     {
         [SerializeField] float maxSpeed = 6f;
         [SerializeField] float maxNavPathLength = 40f;
+        [SerializeField] private float dashAmount = 5f;
+        [SerializeField] private float dashDuration = 1f;
         NavMeshAgent navAgent;
         Health health;
-
-        Vector3 prevPos;
-
+        Vector3 lastMoveDir = Vector3.forward;
+        public DriftingJoystickMouse joystick;
+        private bool isDashing = false;
 
         public bool cameraRelative = true;
+        Vector3 prevPos;
         Camera cam;
-        Vector3 lastMoveDir = Vector3.forward;
 
 
-        public DriftingJoystickMouse joystick;
 
 
         private void Awake()
         {
             navAgent = GetComponent<NavMeshAgent>();
             health = GetComponent<Health>();
+            if (!navAgent.isOnNavMesh)
+            {
+                if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+                {
+                    navAgent.Warp(hit.position);
+                }
+            }
         }
 
         void Update()
@@ -38,12 +47,73 @@ namespace RPG.Movement
 
         }
 
-        void LateUpdate()
+        void OnEnable()
         {
+            if (joystick != null)
+                joystick.DragSpeedTriggered += AdjustSpeed;
         }
 
+        void OnDisable()
+        {
+            if (joystick != null)
+                joystick.DragSpeedTriggered -= AdjustSpeed;
+        }
+
+        // 0–1: how much of the dash stays at full speed
+        [SerializeField, Range(0f, 1f)]
+        private float holdPercent = 0.7f;
+
+        // Higher = sharper drop at the end
+        [SerializeField, Range(1f, 6f)]
+        private float falloffSharpness = 3f;
+
+        public void AdjustSpeed()
+        {
+            if (isDashing) return;
+            GetComponent<Animator>().SetTrigger("dash");
+            StartCoroutine(DashCoroutine());
+        }
+
+        private IEnumerator DashCoroutine()
+        {
+            isDashing = true;
+
+            float originalSpeed = maxSpeed;
+            float boostedSpeed = originalSpeed + dashAmount;
+
+            maxSpeed = boostedSpeed;
+
+            float elapsed = 0f;
+
+            while (elapsed < dashDuration)
+            {
+                elapsed += Time.deltaTime;
+                float normalizedTime = elapsed / dashDuration;
+
+                float t;
+
+                if (normalizedTime < holdPercent)
+                {
+                    // Stay at full speed
+                    t = 0f;
+                }
+                else
+                {
+                    // Falloff phase
+                    float falloffTime =
+                        (normalizedTime - holdPercent) / (1f - holdPercent);
+
+                    t = Mathf.Pow(falloffTime, falloffSharpness);
+                }
+
+                maxSpeed = Mathf.Lerp(boostedSpeed, originalSpeed, t);
+                yield return null;
+            }
 
 
+            maxSpeed = originalSpeed;
+            isDashing = false;
+        }
 
         public void HandleRawInput()
         {
@@ -147,17 +217,23 @@ namespace RPG.Movement
 
         public void MoveTo(Vector3 destination, float speedFraction)
         {
-            navAgent.SetDestination(destination);
-            navAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction); //clamps value between 0-1
+
             navAgent.isStopped = false;
+            navAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction);
+            navAgent.SetDestination(destination);
             GetComponent<Fighter>().AttackRecovery = 0f;
-            
         }
 
         public void Cancel()
         {
+            print($"{name} Mover.Cancel() frame={Time.frameCount}\n{UnityEngine.StackTraceUtility.ExtractStackTrace()}");
             navAgent.isStopped = true;
+            navAgent.ResetPath();
         }
+
+
+        bool wasIdle;
+
 
         private void UpdateAnimation()
         {
@@ -173,6 +249,11 @@ namespace RPG.Movement
 
             float rawSpeed = (delta / Time.deltaTime).magnitude;   // world units/sec
             GetComponent<Animator>().SetFloat("forwardSpeed", rawSpeed, 0.15f, Time.deltaTime);
+
+            bool isIdle = rawSpeed < 0.05f; // tune
+
+            if (isIdle && !wasIdle) print("NOT MOVING");
+            wasIdle = isIdle;
         }
 
         public object CaptureState()

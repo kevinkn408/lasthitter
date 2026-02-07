@@ -17,14 +17,11 @@ public class UpdatePosition : MonoBehaviour
     {
         if (fighter.GetTarget == null)
         {
-            print("no tracking");
             vfx.gameObject.SetActive(false);
         }
         else
         {
-            print("tracking");
             vfx.gameObject.SetActive(true);
-
             targetTransform = fighter.GetTarget.transform.position;
             this.gameObject.transform.position = targetTransform;
         }

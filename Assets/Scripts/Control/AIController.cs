@@ -21,9 +21,9 @@ namespace RPG.Control
         [Range(0, 1)] [SerializeField] float speedFraction = 0.2f;
         Fighter fighter;
         /*public GameObject[] targets = null;*/
-        public List<GameObject> targets = new List<GameObject>();
-        public List<GameObject> players = new List<GameObject>();
-        [SerializeField] GameObject currentTarget = null;
+        private List<GameObject> targets = new List<GameObject>();
+        private List<GameObject> players = new List<GameObject>();
+        private GameObject currentTarget = null;
         Health health;
         LazyValue<Vector3> guardPosition;
         Mover mover;
@@ -50,10 +50,10 @@ namespace RPG.Control
      
         void Update()
         {
-            if(currentTarget == null)
-            {
-                FindTargets();
-            }
+            if (targets.Count == 0) FindTargets();
+
+            GameObject candidate = SortTargets(targets);
+            if (candidate != null) currentTarget = candidate;
             currentTarget = SortTargets(targets);
 
             if (health.IsDead()) { return; }

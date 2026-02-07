@@ -88,6 +88,7 @@
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Editor/PostProcessingModelEditor.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Editor/Models/VignetteModelEditor.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Editor/Models/DefaultPostFxModelEditor.cs" />
+    <Compile Include="Assets/Hovl Studio/HSFiles/Scripts/Editor/ShaderChanger.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Editor/PropertyDrawers/GetSetDrawer.cs" />
     <Compile Include="Assets/Asset Packs/RealToon/Editor/RealToonShaderGUI_Lite.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Editor/Models/AntialiasingModelEditor.cs" />

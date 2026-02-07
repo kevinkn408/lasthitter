@@ -32,6 +32,8 @@ namespace RPG.Combat
         [SerializeField] float attackAnimationLength = 1f;
         [SerializeField] float attackRecovery = 0f;
         [SerializeField] float timeSinceLastHit = 0f;
+        [SerializeField] float timeBetweenAttacks = 0f;
+
         public float AttackRecovery { get { return attackRecovery; } set { attackRecovery = value; } }
 
 
@@ -99,24 +101,32 @@ namespace RPG.Combat
             HandleAttacking();
         }
 
+        private bool IsInAttackAnimation()
+        {
+            return GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Attack");
+        }
+
         public void HandleAttacking()
         {
-            if (currentTarget == null || currentTarget.IsDead())
+            if (currentTarget == null || currentTarget.IsDead()) return;
+
+            // If we're mid-swing, don't move at all
+            if (IsInAttackAnimation())
             {
-                currentTarget = null;
+                GetComponent<Mover>().Cancel();
                 return;
             }
 
             if (!GetIsInRange(currentTarget.transform))
             {
                 GetComponent<Mover>().MoveTo(currentTarget.transform.position, 1f);
-                print("not in range");
+                return;
             }
-            else
-            {
-                GetComponent<Mover>().Cancel();
-                AttackBehavior(CalculateAttackSpeed());
-            }
+
+            // In range and not mid-swing -> start the attack action
+            GetComponent<Mover>().Cancel();
+            GetComponent<ActionScheduler>().StartAction(this);
+            AttackBehavior(CalculateAttackSpeed());
         }
 
         private float CalculateAttackSpeed()
@@ -151,6 +161,7 @@ namespace RPG.Combat
         public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) { return false; }
+
             if (!GetComponent<Mover>().CanMoveTo(combatTarget.transform.position) && !GetIsInRange(currentTarget.transform))
             {
                 return false;
@@ -172,33 +183,32 @@ namespace RPG.Combat
 
             if (!this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
-
                 TriggerAttack();
-
             }
-
-            //if (timeSinceLastAttack > attackLength)
-            //{
-            //    print("pre attacking");
-
-            //    TriggerAttack();
-            //    //this will trigger an animation that will call "Hit()" on a certain frame (check animation clip);
-
-            //}
         }
 
         public void TriggerAttack()
         {
             if (GetIsInRange(currentTarget.transform))
             {
+                //Invoke("Attacking", timeBetweenAttacks);
+
                 timeSinceLastHit = 0f;
                 timeSinceLastAttack = 0f;
+                GetComponent<ActionScheduler>().StartAction(this);
                 GetComponent<Animator>().ResetTrigger("stopAttack");
                 GetComponent<Animator>().SetTrigger("attack");
-                print("attacking");
 
             }
 
+        }
+
+        private void Attacking()
+        {
+            GetComponent<Animator>().ResetTrigger("stopAttack");
+            GetComponent<Animator>().SetTrigger("attack");
+            timeSinceLastHit = 0f;
+            timeSinceLastAttack = 0f;
         }
 
         void AnimationStart()
@@ -228,12 +238,16 @@ namespace RPG.Combat
                 currentWeapon.value.OnHit();
             }
 
+
+            //if ranged weapon, use launchprojectile (this will "shoot" projectile the frame that triggers "Shoot()/Hit() in animation clip)"
             if (currentWeaponConfig.HasProjectile())
             {
                 currentWeaponConfig.LaunchProjectile(rightHandTransform, leftHandTransform, currentTarget, this.gameObject, damage);
             }
             else
             {
+
+                //else just apply damage on the frame of Hit() (inside of animation clip for attacking animation)
                 currentTarget.TakeDamage(gameObject, damage);
             }
 

@@ -21,7 +21,7 @@ public class AutoAttacker : MonoBehaviour
     void Update()
     {
         currentTarget = GetComponent<SortTargets>().ClosestTarget();
-
-        fighter.GetTarget = currentTarget.GetComponent<Health>();
+        if (currentTarget == null) return;
+        fighter.Attack(currentTarget);
     }
 }

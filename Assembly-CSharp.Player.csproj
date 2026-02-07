@@ -125,6 +125,7 @@
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/Components/BloomComponent.cs" />
     <Compile Include="Assets/Scripts/Cinematics/CinematicTrigger.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/Models/BuiltinDebugViewsModel.cs" />
+    <Compile Include="Assets/StateDisplay.cs" />
     <Compile Include="Assets/SortTargets.cs" />
     <Compile Include="Assets/SlotMachineController.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/Components/ScreenSpaceReflectionComponent.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/Components/EyeAdaptationComponent.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/Models/ColorGradingModel.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/Components/FxaaComponent.cs" />
+    <Compile Include="Assets/Hovl Studio/HSFiles/Scripts/For demo scenes/HS_CameraHolder.cs" />
     <Compile Include="Assets/Asset Packs/RealToon/Examples/Model/UnityChan/Scripts/ThirdPersonCamera.cs" />
     <Compile Include="Assets/Scripts/Control/AIController.cs" />
     <Compile Include="Assets/Scripts/Stats/LevelDisplay.cs" />
@@ -172,11 +174,13 @@
     <Compile Include="Assets/The Amazing Impact VFX/Sample Scene/SelfDestruct.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/Models/AntialiasingModel.cs" />
     <Compile Include="Assets/Asset Packs/Fantasy Skybox FREE/Demo/Scripts/GE_FantasySkyboxFREE_Demo.cs" />
+    <Compile Include="Assets/FloorRandomizer.cs" />
     <Compile Include="Assets/Asset Packs/Particle Attractor by Moonflower Carnivore/Scripts/particleAttractorLinear.cs" />
     <Compile Include="Assets/Scripts/Combat/Fighter.cs" />
     <Compile Include="Assets/Scripts/Core/IAction.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/Components/VignetteComponent.cs" />
     <Compile Include="Assets/Scripts/ScoreKeeper.cs" />
+    <Compile Include="Assets/SelfDeactivate.cs" />
     <Compile Include="Assets/Scripts/Control/PlayerController.cs" />
     <Compile Include="Assets/The Amazing Impact VFX/Sample Scene/SampleManager.cs" />
     <Compile Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Runtime/PostProcessingBehaviour.cs" />
@@ -238,6 +242,7 @@
     <None Include="Assets/RealToon/RealToon Shaders/RealToon Core/URP/RT_URP_Core.hlsl" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Shaders/SNB_Foliage.shader" />
+    <None Include="Assets/Hovl Studio/HSFiles/Shaders/DissolveNoise.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Resources/Shaders/TAA.cginc" />
     <None Include="Assets/Asset Packs/RealToon/For VRoid users please read.txt" />
@@ -249,9 +254,11 @@
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Shaders/SNB_Rocks.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Editor Resources/Monitors/VectorscopeCompute.compute" />
     <None Include="Assets/Asset Packs/RealToon/RealToon SRP/HDRP/RealToon HDRP (Temporary User Guide).txt" />
+    <None Include="Assets/Hovl Studio/HSFiles/Shaders/Add_Fresnel.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Shaders/SNB_Foliage_Deferred.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Resources/Shaders/ColorGrading.cginc" />
+    <None Include="Assets/Hovl Studio/HSFiles/Shaders/Distortion.shader" />
     <None Include="Assets/Asset Packs/Trees_WorldSpace_FREE/Shaders/HDRP/HDRP_TreeLeafSwitcher.shader" />
     <None Include="Assets/RealToon/RealToon Shaders/Effects/DeNorSob Outline/DeNorSobOutline.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Editor Resources/Monitors/HistogramRender.shader" />
@@ -259,6 +266,7 @@
     <None Include="Assets/Asset Packs/Trees_WorldSpace_FREE/Shaders/StandardRP/BarkShaderAS.shader" />
     <None Include="Assets/Asset Packs/Particle Attractor by Moonflower Carnivore/Particle Attractor documentation.txt" />
     <None Include="Assets/Asset Packs/RealToon/RealToon Shaders/Version 5/Default/D_Refraction.shader" />
+    <None Include="Assets/Hovl Studio/Sword slash VFX/Demo scene/Readme.txt" />
     <None Include="Assets/Asset Packs/RealToon/RealToon Shaders/Version 5/Default/D_Fade_Transparency.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Shaders/SNB_Grass.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" />
@@ -268,6 +276,7 @@
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Resources/Bluenoise64/LICENSE.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Resources/Shaders/ACES.cginc" />
+    <None Include="Assets/Hovl Studio/HSFiles/Shaders/Lightning.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Resources/Shaders/MotionBlur.cginc" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" />
@@ -285,10 +294,12 @@
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Editor Resources/Monitors/ParadeRender.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Resources/Shaders/MotionBlur.shader" />
     <None Include="Assets/Asset Packs/GE Common Assets/Readme.txt" />
+    <None Include="Assets/Hovl Studio/HSFiles/Shaders/BlendDistort.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Resources/Shaders/DiskKernels.cginc" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Resources/Bluenoise64/COPYING.txt" />
     <None Include="Assets/Asset Packs/RealToon/RealToon SRP/HDRP/RealToon HDRP (Quick Guide).txt" />
+    <None Include="Assets/Hovl Studio/HSFiles/Shaders/Scroll.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Editor Resources/UI/Trackball.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Editor Resources/Monitors/WaveformRender.shader" />
     <None Include="Assets/Asset Packs/StylizedNatureBundle/Demo/PostProcessing/Resources/Shaders/Common.cginc" />

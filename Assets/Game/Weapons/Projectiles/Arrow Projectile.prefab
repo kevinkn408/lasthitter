@@ -190,7 +190,8 @@ PrefabInstance:
         type: 3}
       propertyPath: impactEffect
       value: 
-      objectReference: {fileID: 180128, guid: 91d1a2210ab9f484199e0eaa00d06df6, type: 3}
+      objectReference: {fileID: 1885181938588496, guid: 81d8f707fca065646a1568e2a494519b,
+        type: 3}
     - target: {fileID: 5428527720900181102, guid: f8e15bc8e04644fffa5dc973d6f13088,
         type: 3}
       propertyPath: lifeAfterImpact
